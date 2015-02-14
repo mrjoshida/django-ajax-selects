@@ -105,7 +105,10 @@ class AutoCompleteSelectWidget(forms.widgets.TextInput):
 
         got = data.get(name, None)
         if got:
-            return _to_number(got)
+            if got.isnumeric():
+              return _to_number(got)
+            else:
+              return str(got)
         else:
             return None
 
