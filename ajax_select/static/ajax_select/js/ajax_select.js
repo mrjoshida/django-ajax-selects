@@ -9,13 +9,32 @@
           $text = $('#' + id + '_text'),
           $deck = $('#' + id + '_on_deck');
 
+      function renderResult(repr, pk) {
+        /*
+         * Render the autocomplete response. By default the repr is
+         * added to a killable deck below the input field. If
+         * options.render_in_input is true the repr will be added to
+         * the input field and the deck ignored.
+         */
+        if (options.render_in_input) {
+          $text.val(repr);
+        } else {
+          $text.val('')
+          addKiller(repr, pk);
+        }
+      }
+
       function receiveResult(event, ui) {
         if ($this.val()) {
           kill();
         }
         $this.val(ui.item.pk);
+<<<<<<< HEAD
         $text.val('');
         addKiller(ui.item.repr, ui.item.pk);
+=======
+        renderResult(ui.item.repr, ui.item.pk);
+>>>>>>> aa448758b0d449f48aab8a95282e5619c787e8c1
         $deck.trigger('added', [ui.item.pk, ui.item]);
         $this.trigger('change');
 
@@ -46,7 +65,7 @@
       $text.autocomplete(options);
 
       if (options.initial) {
-        addKiller(options.initial[0], options.initial[1]);
+        renderResult(options.initial[0], options.initial[1]);
       }
 
       $this.bind('didAddPopup', function (event, pk, repr) {
