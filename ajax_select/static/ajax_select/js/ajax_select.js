@@ -29,12 +29,7 @@
           kill();
         }
         $this.val(ui.item.pk);
-<<<<<<< HEAD
-        $text.val('');
-        addKiller(ui.item.repr, ui.item.pk);
-=======
         renderResult(ui.item.repr, ui.item.pk);
->>>>>>> aa448758b0d449f48aab8a95282e5619c787e8c1
         $deck.trigger('added', [ui.item.pk, ui.item]);
         $this.trigger('change');
 
